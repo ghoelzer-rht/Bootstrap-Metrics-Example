@@ -7,6 +7,6 @@ Fancy Metrics
 See the screenshot as example
 
 Note that in my case all credentials would be stored in
-include '/var/www/Archon/config.inc.php';
+include 'config.inc.php';
 
 
