@@ -79,14 +79,14 @@ include 'functions.php';
         {
           value: 
 <?php
-echo  '' . $mbytesr . '
+echo  '' . $sizedbr . '
           ,
           color:"#F38630"
         },
         {
           value : 
 
-      ' . $mbytes2r . '
+      ' . $sizefilesr . '
           ,
           color : "#E0E4CC"
         },
@@ -105,10 +105,10 @@ echo  '' . $mbytesr . '
       <h3 class="panel-title">Space Usage</h3>
   </div><div class="panel-body">
       <button type="button" class="btn btn-default btn-lg" style="width:330px; text-align:left;">
-      <span class="glyphicon glyphicon-list"></span> Database Size is: <?php echo "$mbytesr" ?> MB
+      <span class="glyphicon glyphicon-list"></span> Database Size is: <?php echo "$sizedbr" ?> MB
       </button><br><br>
       <button type="button" class="btn btn-default btn-lg" style="width:330px; text-align:left;">
-      <span class="glyphicon glyphicon-hdd"></span> Aggregated File Size is: <?php echo "$mbytes2r" ?> MB
+      <span class="glyphicon glyphicon-hdd"></span> Aggregated File Size is: <?php echo "$sizefilesr" ?> MB
       </button><br /><br />
       <br><strong>Your total allocated Space Usage is at <?php echo "$percentager" ?> % </strong>
       <div class="progress progress-striped active">
