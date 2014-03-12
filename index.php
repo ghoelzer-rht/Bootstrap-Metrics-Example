@@ -177,8 +177,12 @@ echo  '' . $mbytesr . '
     <!-- row -->
       <!--    <a href="#" class="btn btn-primary btn-default"><span class="glyphicon glyphicon-eye-open"></span> Default text here</a> -->
 
-    </div><!-- /.container -->
+    </div>
         </div><!-- /.info -->
+  </div>
+</div>
+  </div><!-- starter template -->
+</div><!-- container -->
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
