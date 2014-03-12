@@ -1,16 +1,20 @@
-
 <?PHP
 
-echo <<< EOT
-!DOCTYPE html>
+/* Credentials, Calculations, and MYSQL Queries (PDO) */
+
+include '/var/www/Archon/config.inc.php';
+include 'functions.php';
+?>
+
+<!DOCTYPE html>
 <html lang="en">
+
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <link rel="shortcut icon" href="../../docs-assets/ico/favicon.png">
+    <meta name="description" content="Statistics and Metrics with PHP and ChartJS">
+    <meta name="author" content="Benjamin Wiens, Keystone Library Network">
 
     <title>Archon Stats</title>
 
@@ -57,78 +61,11 @@ echo <<< EOT
         <h1>Archon Admin</h1>
         <p class="lead">Keystone Library Network</p>
 </br>
-EOT;
-
-/* Calculations and MYSQL Fetches */
-
-include '/var/www/Archon/config.inc.php';
-try {
-$conn = new PDO("mysql:host={$_ARCHON->db->ServerAddress};dbname={$_ARCHON->db->DatabaseName}", $_ARCHON->db->Login, $_ARCHON->db->Password);
-      }
-catch(PDOException $e)
-    {
-    echo $e->getMessage();
-    }
-
-$sth = $conn->query("SHOW TABLE STATUS");
-$dbSize = 0;
-$Result = $sth->fetchAll();
- foreach ($Result as $Row){
-      $dbSize += $Row["Data_length"] + $Row["Index_length"];
-      };
-
-
-$sth = $conn->prepare('SELECT COUNT(DISTINCT ID) as `count` FROM tblCollections_Collections');  
-    $sth->execute();  
-        $colresults = $sth->fetchAll(PDO::FETCH_ASSOC);
-         
-
-$colnr = ($colresults[0]['count']);
-
-
-
-$mbytes = ($dbSize/(1024*1024)+1000);
-$mbytesr = round($mbytes, 2);
-
-
-
-$iterator = new RecursiveIteratorIterator(
-    new RecursiveDirectoryIterator('/var/www/Archon/'));
-
-$totalSize = 0
-;foreach($iterator as $file) {
-    $totalSize += $file->getSize();
-}
-$mbytes2 = $totalSize/(1024*1024);
-$mbytes2r = round($mbytes2, 2);
-
-
-
-
-$combinedmb = $mbytes2 + $mbytes;
-$totalmb = 4096;
-$freespace = $totalmb - $combinedmb;
-
-$percentage = ($combinedmb/$totalmb)*100;
-$percentager = round($percentage, 2);
-
-$mbytespercentage = ($mbytes/$totalmb)*100;
-$mbytes2percentage = ($mbytes2/$totalmb)*100;
-
-
-
-
-
-echo '
 <!-- row -->
 <div class="row">
           <div class="col-lg-4"><div class="panel panel-primary">  <div class="panel-heading">
     <h3 class="panel-title">Space Usage Pie Chart</h3>
-  </div><div class="panel-body"><div class="panel-inner">'; 
-
-
-
-echo <<< EOT
+  </div><div class="panel-body"><div class="panel-inner">
 <!-- chartjs -->
 <script src="dist/js/Chart.js"></script>
     <meta name = "viewport" content = "initial-scale = 1, user-scalable = no">
@@ -141,17 +78,15 @@ echo <<< EOT
     var pieData = [
         {
           value: 
-EOT;
-echo "$mbytesr";
-echo <<< EOT
+<?php
+echo  '' . $mbytesr . '
           ,
           color:"#F38630"
         },
         {
           value : 
-EOT;
-echo "$mbytes2r";
-echo '
+
+      ' . $mbytes2r . '
           ,
           color : "#E0E4CC"
         },
@@ -160,36 +95,31 @@ echo '
           color : "#69D2E7"
         }
       
-      ];';
-echo <<< EOT
-  var myPie = new Chart(document.getElementById("canvas").getContext("2d")).Pie(pieData);
-    </script>
-EOT;
+      ];
 
-echo '<!-- inner --> </div></div></div></div>
+  var myPie = new Chart(document.getElementById("canvas").getContext("2d")).Pie(pieData);
+    </script>'
+?>
+<!-- inner --> </div></div></div></div>
   <div class="col-lg-4"><div class="panel panel-primary">  <div class="panel-heading">
-    <h3 class="panel-title">Space Usage</h3>
-  </div><div class="panel-body">';
-echo '
-<button type="button" class="btn btn-default btn-lg" style="width:330px; text-align:left;">
-  <span class="glyphicon glyphicon-list"></span> Database Size is: ' . $mbytesr . ' MB
-</button><br><br>
-<button type="button" class="btn btn-default btn-lg" style="width:330px; text-align:left;">
-  <span class="glyphicon glyphicon-hdd"></span> Aggregated File Size is: ' . $mbytes2r . ' MB
-</button><br /><br />
-  <br><strong>Your total allocated Space Usage is at ' . $percentager . ' % </strong>
-<div class="progress progress-striped active">
-  <div class="progress-bar"  role="progressbar" aria-valuenow="$percentager" aria-valuemin="0" aria-valuemax="100" style="width: ' . $percentager . '%">
-    <span class="sr-only"> ' . $percentager . ' % Complete</span>
+      <h3 class="panel-title">Space Usage</h3>
+  </div><div class="panel-body">
+      <button type="button" class="btn btn-default btn-lg" style="width:330px; text-align:left;">
+      <span class="glyphicon glyphicon-list"></span> Database Size is: <?php echo "$mbytesr" ?> MB
+      </button><br><br>
+      <button type="button" class="btn btn-default btn-lg" style="width:330px; text-align:left;">
+      <span class="glyphicon glyphicon-hdd"></span> Aggregated File Size is: <?php echo "$mbytes2r" ?> MB
+      </button><br /><br />
+      <br><strong>Your total allocated Space Usage is at <?php echo "$percentager" ?> % </strong>
+      <div class="progress progress-striped active">
+    <div class="progress-bar"  role="progressbar" aria-valuenow=<?php echo "\"$percentager\"" ?> aria-valuemin="0" aria-valuemax="100" <?php echo "style=\"width:$percentager%\""?>>
+    <span class="sr-only"> <?php echo "$percentager" ?> % Complete</span>
   </div>
 </div>
  <div class="alert alert-success"><strong>Please note:</strong> Current space allocation has been set to hypothetical 4 GB.</div>
-';
 
 
-echo '
     </div></div> </div> 
-
 <div class="col-lg-4"><div class="panel panel-primary">  <div class="panel-heading">
     <h3 class="panel-title">Repository Details</h3>
   </div><div class="panel-body">
@@ -201,7 +131,7 @@ echo '
                  <span class="glyphicon glyphicon-book"></span>
                   </div>
                   <div class="col-xs-6 text-right">
-                    <p class="announcement-heading"> ' . $colnr . ' </p>
+                    <p class="announcement-heading"><?php echo "$colnr" ?></p>
                     <p class="announcement-text">Collections</p>
                   </div>
                 </div>
@@ -219,10 +149,6 @@ echo '
                 </div>
               </a>
             </div>
-
-
-
-
 <div class="panel panel-warning">
               <div class="panel-heading">
                 <div class="row">
@@ -248,8 +174,6 @@ echo '
                 </div>
               </a>
             </div>
-
-
     <!-- row -->
       <!--    <a href="#" class="btn btn-primary btn-default"><span class="glyphicon glyphicon-eye-open"></span> Default text here</a> -->
 
@@ -262,5 +186,3 @@ echo '
     <script src="dist/js/bootstrap.min.js"></script>
   </body>
 </html>
-'
-?>
