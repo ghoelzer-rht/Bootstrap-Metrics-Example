@@ -1,0 +1,41 @@
+.starter-template
+{
+  margin-top: 60px;
+}
+
+canvas
+{
+display:block;
+margin:0 auto;
+}
+
+div.panel-primary
+{
+height: 350px;
+}
+
+.glyphicon {
+font-size: 18px !important;
+}
+
+.announcement-heading {
+font-size: 25px;
+margin: 0;
+}
+
+.panel-danger > .panel-heading{
+min-height: 80px;
+}
+
+.panel-warning > .panel-heading{
+min-height: 80px;
+}
+
+.panel-body {
+margin: 0 auto !important;
+position: absolute;
+top: 40px;
+left: 10px;
+right: 10px;
+bottom: 0;
+}
