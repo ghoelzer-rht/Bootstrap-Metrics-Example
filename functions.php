@@ -43,19 +43,7 @@ $sth = $conn->prepare('SELECT COUNT(DISTINCT ID) as `count` FROM tblCollections_
          
 $colnr = ($colresults[0]['count']);
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+// more rounding for the interface (graphs)
 $percentage = ($combinedmb/$totalspace)*100;
 $percentager = round($percentage, 2);
 
