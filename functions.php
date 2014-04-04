@@ -16,7 +16,7 @@ $Result = $sth->fetchAll();
       $dbSize += $Row["Data_length"] + $Row["Index_length"];
       };
 
-// convert dbsize to MB and round 
+// convert dbsize to MB and round -- I added 1000 because the size of my test DB was so small 
 $sizedb = ($dbSize/(1024*1024)+1000);
 $sizedbr = round($sizedb, 2);
 
