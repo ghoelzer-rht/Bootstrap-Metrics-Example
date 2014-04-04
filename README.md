@@ -4,7 +4,7 @@ Fancy Metrics
 - ChartJS http://www.chartjs.org/
 - PHP / MYSQL to retreive metrics (all PDO)
 
-See the screenshot for an example.
+See the screenshot (screen.png) for an example.
 
 Note that in my case all credentials would be stored in
 include 'config.inc.php';
