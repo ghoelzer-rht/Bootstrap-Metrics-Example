@@ -100,6 +100,13 @@ echo  '' . $sizedbr . '
   var myPie = new Chart(document.getElementById("canvas").getContext("2d")).Pie(pieData);
     </script>'
 ?>
+
+<ul class="legend">
+    <li class="db">Database Size</li>
+    <li class="disk">Aggr. File Size</li>
+    <li class="free">Free Space</li>
+</ul>
+
 <!-- inner --> </div></div></div></div>
   <div class="col-lg-4"><div class="panel panel-primary">  <div class="panel-heading">
       <h3 class="panel-title">Space Usage</h3>
