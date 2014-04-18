@@ -39,3 +39,31 @@ left: 10px;
 right: 10px;
 bottom: 0;
 }
+
+/* Legend */
+
+ul.legend {
+    list-style: none;
+    padding: 5px;
+    margin: 0 auto;
+    border: 0px solid black;
+    width: 150px;
+}
+
+li.db:before {
+    content: "■ ";
+    color: #6633cc; 
+    font-size: 120%;
+}
+
+li.disk:before {
+    content: "■ ";
+    color: #e0e4cc; 
+    font-size: 120%;
+}
+
+li.free:before {
+    content: "■ ";
+    color: #69d2e7; 
+    font-size: 120%;
+}
