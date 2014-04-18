@@ -81,7 +81,7 @@ include 'functions.php';
 <?php
 echo  '' . $sizedbr . '
           ,
-          color:"#F38630"
+          color:"#6633cc"
         },
         {
           value : 
