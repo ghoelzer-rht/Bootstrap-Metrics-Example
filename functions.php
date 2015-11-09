@@ -34,7 +34,7 @@ $sizedbr = round($sizedb, 2);
 //$iterator = new RecursiveIteratorIterator(
 //    new RecursiveDirectoryIterator('/var/lib/mysql/data'));
 
-$totalSize = 0
+$totalSize = 0;
 //;foreach($iterator as $file) {
 //    $totalSize += $file->getSize();
 //}
