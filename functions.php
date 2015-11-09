@@ -1,7 +1,16 @@
 <?php
 // connect to the MYSQL database
 try {
-$conn = new PDO("mysql:host={$_ARCHON->db->ServerAddress};dbname={$_ARCHON->db->DatabaseName}", $_ARCHON->db->Login, $_ARCHON->db->Password);
+// List OpenShift Env Variables
+// Or simply use a Superglobal ($_SERVER or $_ENV)
+$mysql_user = $_ENV['MYSQL_USER'];
+$mysql_password = $_ENV['MYSQL_PASSWORD'];
+$my_database = $_ENV['MYSQL_DATABASE'];
+$mysql_service_host = $_ENV['MYSQL_SERVICE_HOST'];
+$mysql_service_port = $_ENV['MYSQL_SERVICE_PORT'];
+$mysql_host = $mysql_service_host . ":" . $mysql_service_port;
+
+$conn = new PDO("mysql:host={$mysql_host};dbname={$my_database}", $mysql_user, $mysql_password);
       }
 catch(PDOException $e)
     {
