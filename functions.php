@@ -29,14 +29,15 @@ $Result = $sth->fetchAll();
 $sizedb = ($dbSize/(1024*1024)+1000);
 $sizedbr = round($sizedb, 2);
 
+//MySQL DB on Separate POD
 // calculate disk space usage and round
-$iterator = new RecursiveIteratorIterator(
-    new RecursiveDirectoryIterator('/var/lib/mysql/data'));
+//$iterator = new RecursiveIteratorIterator(
+//    new RecursiveDirectoryIterator('/var/lib/mysql/data'));
 
 $totalSize = 0
-;foreach($iterator as $file) {
-    $totalSize += $file->getSize();
-}
+//;foreach($iterator as $file) {
+//    $totalSize += $file->getSize();
+//}
 $sizefiles = $totalSize/(1024*1024);
 $sizefilesr = round($sizefiles, 2);
 
