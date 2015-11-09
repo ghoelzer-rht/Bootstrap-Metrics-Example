@@ -31,7 +31,7 @@ $sizedbr = round($sizedb, 2);
 
 // calculate disk space usage and round
 $iterator = new RecursiveIteratorIterator(
-    new RecursiveDirectoryIterator('/var/www/Archon/'));
+    new RecursiveDirectoryIterator('/var/lib/mysql/data'));
 
 $totalSize = 0
 ;foreach($iterator as $file) {
