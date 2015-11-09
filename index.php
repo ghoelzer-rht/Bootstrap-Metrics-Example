@@ -2,7 +2,7 @@
 
 /* Credentials, Calculations, and MYSQL Queries (PDO) */
 
-include '/var/www/Archon/config.inc.php';
+#include '/var/www/Archon/config.inc.php';
 include 'functions.php';
 ?>
 
